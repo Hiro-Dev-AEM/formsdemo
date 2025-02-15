@@ -2,8 +2,8 @@
 Your project's description...
 
 ## Environments
-- Preview: https://main--formsdemo--Hiro-Dev-AEM.hlx.page/
-- Live: https://main--formsdemo--Hiro-Dev-AEM.hlx.live/
+- Preview: https://main--formsdemo--hiro-dev-aem.aem.page/
+- Live: https://main--formsdemo--hiro-dev-aem.aem.live/
 
 ## Installation
 
