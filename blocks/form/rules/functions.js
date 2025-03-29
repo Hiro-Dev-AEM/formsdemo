@@ -184,10 +184,10 @@ async function fetchCaptchaToken(globals) {
           callback: successCallback,
           'error-callback': errorCallback,
         };
-        if (typeof turnstile !== 'undefined') {
-          const widgetId = turnstile.render(turnstileContainer, turnstileParameters);
+        if (typeof window.turnstile !== 'undefined') {
+          const widgetId = window.turnstile.render(turnstileContainer, turnstileParameters);
           if (widgetId) {
-            turnstile.execute(widgetId);
+            window.turnstile.execute(widgetId);
           } else {
             reject(new Error('Failed to render turnstile captcha'));
           }
