@@ -96,7 +96,7 @@ function navigateTo(destinationURL, destinationType) {
  * Default
  * @param {object} response - The response body of the invoke service API.
  * @param {object} headers - The response headers of the invoke service API.
- * @param {scope} globals - An object containing read-only form instance, read-only target field instance and methods for form modifications.
+ * @param {scope} globals - An object
  * @returns {void}
  */
 function defaultErrorHandler(response, headers, globals) {
@@ -107,13 +107,13 @@ function defaultErrorHandler(response, headers, globals) {
           globals.functions.markFieldAsInvalid(
             violation.fieldName,
             violation.details.join('\n'),
-            { useQualifiedName: true }
+            { useQualifiedName: true },
           );
         } else if (violation.dataRef) {
           globals.functions.markFieldAsInvalid(
             violation.dataRef,
             violation.details.join('\n'),
-            { useDataRef: true }
+            { useDataRef: true },
           );
         }
       }
@@ -154,11 +154,11 @@ function defaultSubmitSuccessHandler(globals) {
  * @param {scope} globals - An object containing
  * @returns {void}
  */
+/* global turnstile */
 function defaultSubmitErrorHandler(defaultSubmitErrorMessage, globals) {
   // view layer should send localized error message here
   window.alert(defaultSubmitErrorMessage);
 }
-/* global turnstile */
 /**
  * Fetches the captcha token for the form.
  *
@@ -178,7 +178,7 @@ async function fetchCaptchaToken(globals) {
     const errorCallback = function (error) {
       reject(error);
     };
-/* global grecaptcha */
+    /* global grecaptcha */
     try {
       const captcha = globals.form.$captcha;
       if (captcha.$captchaProvider === 'turnstile') {
@@ -225,13 +225,13 @@ async function fetchCaptchaToken(globals) {
  * Converts a date to the number of days since the Unix epoch (1970-01-01).
  *
  * If the input date is a number, it is assumed to represent the number of days since the epoch,
- * including both integer and decimal parts. In this case, only the integer part is returned as the number of days.
+ * including both integer and decimal parts.
  *
  * @param {string|Date|number} date - The date to convert.
  * Can be:
  * - An ISO string (yyyy-mm-dd)
  * - A Date object
- * - A number representing the days since the epoch, where the integer part is the number of days and the decimal part is the fraction of the day
+ * - A number representing the days since
  *
  * @returns {number} - The number of days since the Unix epoch
  */
