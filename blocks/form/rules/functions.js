@@ -65,7 +65,7 @@ function toObject(str) {
 /**
  * Navigates to the specified URL.
  * @param {string} destinationURL - The URL to navigate to.
- * @param {string} destinationType - The type of destination. 
+ * @param {string} destinationType - The type of destination.
  * @returns {Window} - The newly opened window.
  */
 function navigateTo(destinationURL, destinationType) {
@@ -77,9 +77,8 @@ function navigateTo(destinationURL, destinationType) {
       param = '_blank';
       arg = 'width=1000,height=800';
       break;
-      default:
-        // 他の destinationType の場合は何もしない（もしくはログ）
-        break;
+    default:
+      break;
   }
   if (!param) {
     if (destinationType) {
@@ -105,9 +104,17 @@ function defaultErrorHandler(response, headers, globals) {
     response.validationErrors?.forEach((violation) => {
       if (violation.details) {
         if (violation.fieldName) {
-          globals.functions.markFieldAsInvalid(violation.fieldName, violation.details.join('\n'), { useQualifiedName: true });
+          globals.functions.markFieldAsInvalid(
+            violation.fieldName,
+            violation.details.join('\n'),
+            { useQualifiedName: true }
+          );
         } else if (violation.dataRef) {
-          globals.functions.markFieldAsInvalid(violation.dataRef, violation.details.join('\n'), { useDataRef: true });
+          globals.functions.markFieldAsInvalid(
+            violation.dataRef,
+            violation.details.join('\n'),
+            { useDataRef: true }
+          );
         }
       }
     });
@@ -151,7 +158,7 @@ function defaultSubmitErrorHandler(defaultSubmitErrorMessage, globals) {
   // view layer should send localized error message here
   window.alert(defaultSubmitErrorMessage);
 }
-
+/* global turnstile */
 /**
  * Fetches the captcha token for the form.
  *
@@ -171,7 +178,7 @@ async function fetchCaptchaToken(globals) {
     const errorCallback = function (error) {
       reject(error);
     };
-
+/* global grecaptcha */
     try {
       const captcha = globals.form.$captcha;
       if (captcha.$captchaProvider === 'turnstile') {
@@ -186,10 +193,10 @@ async function fetchCaptchaToken(globals) {
           if (widgetId) {
             turnstile.execute(widgetId);
           } else {
-            reject({ error: 'Failed to render turnstile captcha' });
+            reject(new Error('Failed to render turnstile captcha'));
           }
         } else {
-          reject({ error: 'Turnstile captcha not loaded' });
+          reject(new Error('Turnstile captcha not loaded'));
         }
       } else {
         const siteKey = captcha?.$properties['fd:captcha']?.config?.siteKey;
@@ -241,7 +248,7 @@ function dateToDaysSinceEpoch(date) {
   }
 
   // Validate that date is valid after parsing
-  if (isNaN(dateObj.getTime())) {
+  if (Number.isNaN(dateObj.getTime())) {
     throw new Error('Invalid date input');
   }
   return Math.floor(dateObj.getTime() / (1000 * 60 * 60 * 24));
