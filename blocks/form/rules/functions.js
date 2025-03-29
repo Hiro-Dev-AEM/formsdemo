@@ -154,11 +154,7 @@ function defaultSubmitSuccessHandler(globals) {
  * @param {scope} globals - An object containing
  * @returns {void}
  */
-/* global turnstile */
-function defaultSubmitErrorHandler(defaultSubmitErrorMessage, globals) {
-  // globals is intentionally unused for now
-  window.alert(defaultSubmitErrorMessage);
-}
+
 /**
  * Fetches the captcha token for the form.
  *
