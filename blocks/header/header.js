@@ -159,7 +159,7 @@ export default async function decorate(block) {
   if (brandLink) {
     brandLink.className = '';
     brandLink.closest('.button-container')?.classList.remove('button-container');
-    }
+  }
 
   // nav-sections に nav-drop を設定し、クリックで開閉
   const navSections = nav.querySelector('.nav-sections');
