@@ -119,27 +119,58 @@ export default async function decorate(block) {
   nav.id = 'nav';
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  const classes = ['about', 'brand', 'apply', 'sections', 'tools'];
+  // ────── nav-brand を .nav-sections の後ろに移動 ──────
+  const sections = Array.from(nav.children);
+  const navBrandIndex = sections.findIndex((el) =>
+    el.querySelector('a')?.textContent?.includes('Boilerplate')
+  );
+  if (navBrandIndex > -1) {
+    const [brandSection] = sections.splice(navBrandIndex, 1);
+    sections.splice(1, 0, brandSection); // index 1 = .nav-sections の次
+    nav.innerHTML = '';
+    sections.forEach((el) => nav.appendChild(el));
+  }
+
+  // ────── class 付与（新しい順序で）──────
+  const classes = ['sections', 'brand', 'tools'];
   classes.forEach((c, i) => {
     const section = nav.children[i];
     if (section) section.classList.add(`nav-${c}`);
   });
 
-  const navBrand = nav.querySelector('.nav-brand');
-  const brandLink = navBrand.querySelector('.button');
-  if (brandLink) {
-    brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
-  }
+  // ────── 2〜4番目のセクションを blueback でラップ ──────
+  const allSections = Array.from(nav.querySelectorAll('.section'));
+  const toWrap = allSections.slice(1, 4); // index 1〜3 = 2〜4番目
+
+  const bluebackWrapper = document.createElement('div');
+  bluebackWrapper.classList.add('blueback');
+
+  toWrap.forEach((section) => {
+    bluebackWrapper.appendChild(section);
+  });
+
+  toWrap.forEach((section) => {
+    if (section.parentElement === nav) {
+      nav.removeChild(section);
+    }
+  });
 
   const navSections = nav.querySelector('.nav-sections');
-  if (navSections) {
-    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
+  if (navSections && navSections.nextSibling) {
+    nav.insertBefore(bluebackWrapper, navSections.nextSibling);
+  } else {
+    nav.appendChild(bluebackWrapper);
+  }
+
+  // ────── nav-drop のクリックイベントなど装飾 ──────
+  const navSectionsEl = nav.querySelector('.nav-sections');
+  if (navSectionsEl) {
+    navSectionsEl.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('click', () => {
         if (isDesktop.matches) {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          toggleAllNavSections(navSections);
+          toggleAllNavSections(navSectionsEl);
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
         }
       });
