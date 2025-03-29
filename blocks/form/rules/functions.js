@@ -64,8 +64,8 @@ function toObject(str) {
 
 /**
  * Navigates to the specified URL.
- * @param {string} destinationURL - The URL to navigate to. If not specified, a new blank window will be opened.
- * @param {string} destinationType - The type of destination. Supports the following values: "_newwindow", "_blank", "_parent", "_self", "_top", or the name of the window.
+ * @param {string} destinationURL - The URL to navigate to.
+ * @param {string} destinationType - The type of destination. 
  * @returns {Window} - The newly opened window.
  */
 function navigateTo(destinationURL, destinationType) {
@@ -77,6 +77,9 @@ function navigateTo(destinationURL, destinationType) {
       param = '_blank';
       arg = 'width=1000,height=800';
       break;
+      default:
+        // 他の destinationType の場合は何もしない（もしくはログ）
+        break;
   }
   if (!param) {
     if (destinationType) {
@@ -91,7 +94,7 @@ function navigateTo(destinationURL, destinationType) {
 }
 
 /**
- * Default error handler for the invoke service API.
+ * Default
  * @param {object} response - The response body of the invoke service API.
  * @param {object} headers - The response headers of the invoke service API.
  * @param {scope} globals - An object containing read-only form instance, read-only target field instance and methods for form modifications.
@@ -114,7 +117,7 @@ function defaultErrorHandler(response, headers, globals) {
 /**
  * Handles the success response after a form submission.
  *
- * @param {scope} globals - An object containing read-only form instance, read-only target field instance and methods for form modifications.
+ * @param {scope} globals - An object containing read-only
  * @returns {void}
  */
 function defaultSubmitSuccessHandler(globals) {
@@ -138,10 +141,10 @@ function defaultSubmitSuccessHandler(globals) {
 }
 
 /**
- * Handles the error response after a form submission.
+ * Handles
  *
  * @param {string} defaultSubmitErrorMessage - The default error message.
- * @param {scope} globals - An object containing read-only form instance, read-only target field instance and methods for form modifications.
+ * @param {scope} globals - An object containing
  * @returns {void}
  */
 function defaultSubmitErrorHandler(defaultSubmitErrorMessage, globals) {
@@ -155,7 +158,7 @@ function defaultSubmitErrorHandler(defaultSubmitErrorMessage, globals) {
  * This function uses the Google reCAPTCHA Enterprise/turnstile service to fetch the captcha token.
  *
  * @async
- * @param {object} globals - An object containing read-only form instance, read-only target field instance and methods for form modifications.
+ * @param {object} globals - An object containing
  * @returns {string} - The captcha token.
  */
 async function fetchCaptchaToken(globals) {
@@ -178,7 +181,7 @@ async function fetchCaptchaToken(globals) {
           callback: successCallback,
           'error-callback': errorCallback,
         };
-        if (turnstile != undefined) {
+        if (typeof turnstile !== 'undefined') {
           const widgetId = turnstile.render(turnstileContainer, turnstileParameters);
           if (widgetId) {
             turnstile.execute(widgetId);
