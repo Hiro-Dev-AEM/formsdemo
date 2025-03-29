@@ -115,69 +115,70 @@ export default async function decorate(block) {
 
 // decorate nav DOM
 block.textContent = '';
-const nav = document.createElement('nav');
-nav.id = 'nav';
-while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
+  const nav = document.createElement('nav');
+  nav.id = 'nav';
+  while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-// クラス付与（最初に付ける）
-const classes = ['about', 'brand', 'apply', 'sections', 'tools'];
-classes.forEach((c, i) => {
-  const section = nav.children[i];
-  if (section) section.classList.add(`nav-${c}`);
-});
+  // クラス付与（最初に付ける）
+  const classes = ['about', 'brand', 'apply', 'sections', 'tools'];
+  classes.forEach((c, i) => {
+    const section = nav.children[i];
+      if (section) section.classList.add(`nav-${c}`);
+  });
 
-// blueback に brand, apply, sections をラップ
-const sectionEls = Array.from(nav.children);
-const toWrap = sectionEls.slice(1, 4); // index 1〜3 = brand, apply, sections
+  // blueback に brand, apply, sections をラップ
+  const sectionEls = Array.from(nav.children);
+  const toWrap = sectionEls.slice(1, 4); // index 1〜3 = brand, apply, sections
 
-const blueback = document.createElement('div');
-blueback.classList.add('blueback');
+  const blueback = document.createElement('div');
+  blueback.classList.add('blueback');
 
-// ラップする要素を blueback に移動
-toWrap.forEach((section) => {
-  blueback.appendChild(section);
-});
+  // ラップする要素を blueback に移動
+  toWrap.forEach((section) => {
+    blueback.appendChild(section);
+  });
 
-// nav から削除
-toWrap.forEach((section) => {
-  if (section.parentElement === nav) {
-    nav.removeChild(section);
+  // nav から削除
+  toWrap.forEach((section) => {
+    if (section.parentElement === nav) {
+      nav.removeChild(section);
+    }
+  });
+
+  // .nav-about の直後に blueback を挿入
+  const aboutSection = nav.querySelector('.nav-about');
+  if (aboutSection && aboutSection.nextSibling) {
+    nav.insertBefore(blueback, aboutSection.nextSibling);
+  } else {
+    nav.appendChild(blueback);
   }
-});
 
-// .nav-about の直後に blueback を挿入
-const aboutSection = nav.querySelector('.nav-about');
-if (aboutSection && aboutSection.nextSibling) {
-  nav.insertBefore(blueback, aboutSection.nextSibling);
-} else {
-  nav.appendChild(blueback);
-}
+  // nav-brand 内の不要な button クラスを除去
+  const navBrand = nav.querySelector('.nav-brand');
+  const brandLink = navBrand?.querySelector('.button');
+    if (brandLink) {
+    brandLink.className = '';
+    brandLink.closest('.button-container')?.classList.remove('button-container');
+  }
 
-// nav-brand 内の不要な button クラスを除去
-const navBrand = nav.querySelector('.nav-brand');
-const brandLink = navBrand?.querySelector('.button');
-if (brandLink) {
-  brandLink.className = '';
-  brandLink.closest('.button-container')?.classList.remove('button-container');
-}
-
-// nav-sections に nav-drop を設定し、クリックで開閉
-const navSections = nav.querySelector('.nav-sections');
-if (navSections) {
-  navSections
-    .querySelectorAll(':scope .default-content-wrapper > ul > li')
-    .forEach((navSection) => {
-      if (navSection.querySelector('ul')) {
-        navSection.classList.add('nav-drop');
-      }
-      navSection.addEventListener('click', () => {
-        if (isDesktop.matches) {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+  // nav-sections に nav-drop を設定し、クリックで開閉
+  const navSections = nav.querySelector('.nav-sections');
+  if (navSections) {
+    navSections
+      .querySelectorAll(':scope .default-content-wrapper > ul > li')
+      .forEach((navSection) => {
+        if (navSection.querySelector('ul')) {
+          navSection.classList.add('nav-drop');
         }
-      });
-    });
+        navSection.addEventListener('click', () => {
+          if (isDesktop.matches) {
+            const expanded = navSection.getAttribute('aria-expanded') === 'true';
+            toggleAllNavSections(navSections);
+            navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          }
+        });
+      }
+    );
 }
 
   // hamburger for mobile
