@@ -113,8 +113,8 @@ export default async function decorate(block) {
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
   const fragment = await loadFragment(navPath);
 
-// decorate nav DOM
-block.textContent = '';
+  // decorate nav DOM
+  block.textContent = '';
   const nav = document.createElement('nav');
   nav.id = 'nav';
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
@@ -123,7 +123,7 @@ block.textContent = '';
   const classes = ['about', 'brand', 'apply', 'sections', 'tools'];
   classes.forEach((c, i) => {
     const section = nav.children[i];
-      if (section) section.classList.add(`nav-${c}`);
+    if (section) section.classList.add(`nav-${c}`);
   });
 
   // blueback に brand, apply, sections をラップ
@@ -156,10 +156,10 @@ block.textContent = '';
   // nav-brand 内の不要な button クラスを除去
   const navBrand = nav.querySelector('.nav-brand');
   const brandLink = navBrand?.querySelector('.button');
-    if (brandLink) {
+  if (brandLink) {
     brandLink.className = '';
     brandLink.closest('.button-container')?.classList.remove('button-container');
-  }
+    }
 
   // nav-sections に nav-drop を設定し、クリックで開閉
   const navSections = nav.querySelector('.nav-sections');
@@ -177,9 +177,8 @@ block.textContent = '';
             navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
           }
         });
-      }
-    );
-}
+      });
+  }
 
   // hamburger for mobile
   const hamburger = document.createElement('div');
