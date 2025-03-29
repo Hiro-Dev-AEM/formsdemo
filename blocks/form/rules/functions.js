@@ -156,7 +156,7 @@ function defaultSubmitSuccessHandler(globals) {
  */
 /* global turnstile */
 function defaultSubmitErrorHandler(defaultSubmitErrorMessage, globals) {
-  // view layer should send localized error message here
+  // globals is intentionally unused for now
   window.alert(defaultSubmitErrorMessage);
 }
 /**
