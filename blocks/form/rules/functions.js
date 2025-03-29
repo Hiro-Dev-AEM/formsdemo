@@ -257,7 +257,6 @@ export {
   toObject,
   defaultErrorHandler,
   defaultSubmitSuccessHandler,
-  defaultSubmitErrorHandler,
   fetchCaptchaToken,
   dateToDaysSinceEpoch,
 };
