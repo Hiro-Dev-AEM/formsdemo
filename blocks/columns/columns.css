@@ -1,10 +1,23 @@
 .columns > div {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+}
+
+.columns > div > div {
+  background-color:#ffff;
+  border-radius:10px;
+  margin:30px 0px;
+}
+
+.columns picture{
+  display:flex;
+  justify-content:center;
 }
 
 .columns img {
-  width: 100%;
+  height:220px;
+  width:auto;
 }
 
 .columns > div > div {
@@ -21,13 +34,16 @@
 
 @media (width >= 900px) {
   .columns > div {
-    align-items: center;
-    flex-direction: unset;
+    align-items: stretch;
+    flex-direction: row;
     gap: 24px;
   }
 
   .columns > div > div {
     flex: 1;
     order: unset;
+    display: flex;
+    flex-direction: column;
+    padding:0 20px 30px 20px;
   }
 }

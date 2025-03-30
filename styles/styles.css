@@ -228,7 +228,11 @@ main img {
 }
 
 /* sections */
-main > .section {
+main > .section{
+  margin: 0px 0;
+}
+
+main > .section:first-child {
   margin: 110px 0;
 }
 
