@@ -15,8 +15,9 @@ header .nav-wrapper {
 }
 
 .blueback{
-  
+  color:#fff;
 }
+
 .nav-about{
   background-image: url('../icons/logo-BDO-transparent.svg');
   background-repeat: no-repeat;
