@@ -7,8 +7,8 @@ header .nav-wrapper {
 }
 
 .nav-about{
-  margin:0px;
-  padding:0px;
+  margin:0;
+  padding:0;
   background-color:#e5f5ff;
   display:flex;
   justify-content:center;
@@ -66,11 +66,13 @@ header .nav-wrapper {
   gap: 30px;
 }
 
-.blueback .nav-apply ul li:first-child > a {
-  color: #FDB913;
-}
+
 .blueback .nav-apply a{
   color:#fff;
+}
+
+.blueback .nav-apply ul li:first-child > a {
+  color: #FDB913;
 }
 
 .blueback .nav-sections{
