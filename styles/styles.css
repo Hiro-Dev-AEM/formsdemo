@@ -255,3 +255,11 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
+main .gray{
+  background-color:#F6F6F6;
+}
+
+main .blue{
+  background-color: #E5F5FF;
+}
