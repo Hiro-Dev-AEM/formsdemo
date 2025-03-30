@@ -125,7 +125,7 @@ export default async function decorate(block) {
     const section = nav.children[i];
     if (section) section.classList.add(`nav-${c}`);
   });
-  
+
   // blueback に brand, apply, sections をラップ
   const sectionEls = Array.from(nav.children);
   const toWrap = sectionEls.slice(1, 4); // index 1〜3 = brand, apply, sections
