@@ -63,9 +63,9 @@ header .nav-wrapper {
 .nav-tools ul{
   width:1320px;
   display:flex;
-  justify-content:space-between;
+  gap:60px;
   list-style:none;
-  padding-left:150px;
+  padding-left:300px;
 }
 
 .blueback .nav-apply ul{
