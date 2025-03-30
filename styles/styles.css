@@ -267,3 +267,9 @@ main .gray{
 main .blue{
   background-color: #E5F5FF;
 }
+
+main .blue h2{
+  margin:0;
+  padding-top:60px;
+  padding-bottom:20px;
+}
