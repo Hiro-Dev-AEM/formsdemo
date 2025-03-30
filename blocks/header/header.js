@@ -125,7 +125,7 @@ export default async function decorate(block) {
     const section = nav.children[i];
     if (section) section.classList.add(`nav-${c}`);
   });
-
+  
   // blueback に brand, apply, sections をラップ
   const sectionEls = Array.from(nav.children);
   const toWrap = sectionEls.slice(1, 4); // index 1〜3 = brand, apply, sections
@@ -133,10 +133,16 @@ export default async function decorate(block) {
   const blueback = document.createElement('div');
   blueback.classList.add('blueback');
 
-  // ラップする要素を blueback に移動
+  const wrapper = document.createElement('div');
+  wrapper.classList.add('blueback-wrapper');
+
+  // 対象セクションを wrapper に追加
   toWrap.forEach((section) => {
-    blueback.appendChild(section);
+    wrapper.appendChild(section);
   });
+
+  // wrapper を blueback に追加
+  blueback.appendChild(wrapper);
 
   // nav から削除
   toWrap.forEach((section) => {
