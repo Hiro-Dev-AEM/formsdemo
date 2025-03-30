@@ -6,6 +6,106 @@ header .nav-wrapper {
   position: fixed;
 }
 
+.nav-about{
+  margin:0px;
+  padding:0px;
+  background-color:#e5f5ff;
+  display:flex;
+  justify-content:center;
+}
+
+.nav-about ul{
+  width:1320px;
+  display:flex;
+  list-style:none;
+  justify-content:flex-end;
+  gap:40px;
+  font-size:.9em;
+  line-height:2em
+}
+
+.nav-about li{
+  margin-bottom:6px
+}
+
+.nav-about a{
+  color:#000;
+}
+
+.blueback{
+  background-color:#004ea8;
+  display:flex;
+  justify-content:center;
+  width:100%;
+}
+
+.blueback-wrapper{
+  width:1320px;
+  display:flex;
+}
+
+.blueback .nav-brand{
+  background-image: url('/icons/logo-BDO-transparent.svg');
+  background-repeat: no-repeat;
+  background-size: contain; /* または cover / auto */
+  background-position: center center; 
+  width: 80px;
+  height: 60px;
+  display: block;
+  margin-right:40px;
+}
+
+.blueback .nav-brand p{
+  visibility:hidden;
+  width:70px;
+}
+
+.blueback .nav-apply ul{
+  list-style:none;
+  display:flex;
+  gap: 30px;
+}
+
+.blueback .nav-apply ul li:first-child > a {
+  color: #FDB913;
+}
+.blueback .nav-apply a{
+  color:#fff;
+}
+
+.blueback .nav-sections{
+  width:100%;
+  display:flex;
+  justify-content:flex-end;
+}
+
+.blueback .nav-sections ul{
+  list-style:none;
+  display:flex;
+  gap:40px;
+}
+
+.blueback .nav-sections li a{
+  color:#fff;
+}
+
+.nav-tools{
+  display:flex;
+  justify-content:center;
+}
+
+.nav-tools ul{
+  width:1320px;
+  display:flex;
+  justify-content:space-between;
+  list-style:none;
+  padding-left:150px;
+}
+
+.nav-tools li a{
+  color:#004EA8;
+}
+
 /* hamburger */
 @media (width >= 900px) {
   header nav .nav-hamburger {
@@ -14,14 +114,6 @@ header .nav-wrapper {
   }
 }
 
-.blueback{
-  background-color:#004ea8;
-  color:#fff;
-}
-
-.nav-about{
-  background-image: url('/icons/logo-BDO-transparent.svg');
-  background-repeat: no-repeat;
-  background-size: contain; /* または cover / auto */
-  background-position: center center;
+.icon-search{
+  display:none;
 }
