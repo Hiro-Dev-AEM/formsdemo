@@ -66,8 +66,23 @@ header .nav-wrapper {
   gap: 30px;
 }
 
+.nav-tools ul{
+  width:1320px;
+  display:flex;
+  justify-content:space-between;
+  list-style:none;
+  padding-left:150px;
+}
+
+.nav-tools li a{
+  color:#004EA8;
+}
 
 .blueback .nav-apply a{
+  color:#fff;
+}
+
+.blueback .nav-sections li a{
   color:#fff;
 }
 
@@ -87,25 +102,9 @@ header .nav-wrapper {
   gap:40px;
 }
 
-.blueback .nav-sections li a{
-  color:#fff;
-}
-
 .nav-tools{
   display:flex;
   justify-content:center;
-}
-
-.nav-tools ul{
-  width:1320px;
-  display:flex;
-  justify-content:space-between;
-  list-style:none;
-  padding-left:150px;
-}
-
-.nav-tools li a{
-  color:#004EA8;
 }
 
 /* hamburger */
