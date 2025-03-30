@@ -19,7 +19,7 @@ header .nav-wrapper {
 }
 
 .nav-about{
-  background-image: url('../icons/logo-BDO-transparent.svg');
+  background-image: url('/icons/logo-BDO-transparent.svg');
   background-repeat: no-repeat;
   background-size: contain; /* または cover / auto */
   background-position: center center;
