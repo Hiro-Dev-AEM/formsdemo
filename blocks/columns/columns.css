@@ -8,6 +8,7 @@
   background-color:#ffff;
   border-radius:10px;
   margin:30px 0px;
+  order: 1;
 }
 
 .columns picture{
@@ -18,10 +19,6 @@
 .columns img {
   height:220px;
   width:auto;
-}
-
-.columns > div > div {
-  order: 1;
 }
 
 .columns > div > .columns-img-col {
@@ -44,6 +41,6 @@
     order: unset;
     display: flex;
     flex-direction: column;
-    padding:0 20px 30px 20px;
+    padding:0 20px 30px;
   }
 }
