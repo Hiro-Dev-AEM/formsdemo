@@ -90,3 +90,14 @@
   border: 1px solid currentcolor;
   color: #0072D8;
 }
+
+.columns > div > div p.button-container:nth-last-of-type(2) {
+  position:relative;
+  
+}
+
+.columns > div > div p.button-container:last-of-type {
+  position:relative;
+  top:-63px;
+  left:160px;
+}
